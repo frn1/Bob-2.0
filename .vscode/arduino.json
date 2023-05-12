@@ -1,5 +1,0 @@
-{
-    "sketch": "Codigo 1.ino",
-    "board": "arduino:avr:micro",
-    "output": "build"
-}
