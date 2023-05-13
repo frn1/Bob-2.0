@@ -26,6 +26,7 @@ enum Direccion
   Freno = 0b1111
 };
 
+// Actualizar la dirección de los motores
 inline void actualizarMotores(bool lAdel, bool lAtras, bool rAdel, bool rAtras)
 {
   digitalWrite(MTR_L_ADELANTE, lAdel);
@@ -34,34 +35,39 @@ inline void actualizarMotores(bool lAdel, bool lAtras, bool rAdel, bool rAtras)
   digitalWrite(MTR_R_ATRAS, rAtras);
 }
 
+// Actualizar la dirección de los motores con el Enum
 inline void actualizarMotores(Direccion dir)
 {
-  Serial.println(dir);
+  // Serial.println(dir);
   actualizarMotores(bitRead(dir, 0), bitRead(dir, 1), bitRead(dir, 2), bitRead(dir, 3));
 }
 
+// Actualizar la fuerza de cada motor individualmente
 inline void actualizarMotores(uint8_t pwmL, uint8_t pwmR)
 {
-  Serial.print(pwmL);
-  Serial.print("\t");
-  Serial.print(pwmR);
-  Serial.println();
+  // Serial.print(pwmL);
+  // Serial.print("\t");
+  // Serial.print(pwmR);
+  // Serial.println();
   analogWrite(MTR_L_PWM, pwmL);
   analogWrite(MTR_R_PWM, pwmR);
 }
 
+// Actualizar la fuerza ambos motores
 inline void actualizarMotores(uint8_t pwm)
 {
   actualizarMotores(pwm, pwm);
 }
 
 
+// Actualizar la fuerza de ambos motores y la dirección
 inline void actualizarMotores(Direccion dir, uint8_t pwm)
 {
   actualizarMotores(dir);
   actualizarMotores(pwm);
 }
 
+// Actualizar la fuerza de cada motore y su dirección
 inline void actualizarMotores(Direccion dir, uint8_t pwmL, uint8_t pwmR)
 {
   actualizarMotores(dir);

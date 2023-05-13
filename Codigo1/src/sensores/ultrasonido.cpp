@@ -5,14 +5,15 @@
 
 #include "ultrasonido.h"
 
-NewPing sensoresUlts[N_ULTS] = {NewPing(NOT_A_PIN, NOT_A_PIN)};
+NewPing sensoresUlts[N_ULTS];
 
-uint16_t distanciasUlts[N_ULTS] = {0};
+uint16_t distanciasUlts[N_ULTS];
 
 unsigned long pingTimer[N_ULTS];
 
 uint8_t currentSensor = 0;
 
+// Guardar la distancia medida en cada ultrasonido en cm
 void checkEcho()
 {
   if (sensoresUlts[currentSensor].check_timer())
@@ -23,6 +24,7 @@ void loopUlt()
 {
   for (uint8_t i = 0; i < N_ULTS; i++)
   {
+    // Si es tiempo de mandar el ping ultrasonico, hacer eso
     if (millis() >= pingTimer[i])
     {
       pingTimer[i] += PING_INTERVALO * N_ULTS;
