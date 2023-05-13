@@ -17,7 +17,7 @@ constexpr uint8_t MTR_L_PWM = NOT_A_PIN;
 constexpr uint8_t N_PISO = 1;
 
 // Los pines para los sensores del piso
-constexpr uint8_t PISO_PINS[N_ULTS] = {A0};
+constexpr uint8_t PISO_PINS[N_PISO] = {A0};
 
 // La cantidad de ultrasonicos
 constexpr uint8_t N_ULTS = 1;
@@ -30,12 +30,12 @@ constexpr uint8_t ULTS_TRIG[N_ULTS] = {3};
 constexpr uint8_t ULTS_ECHO[N_ULTS] = {4};
 
 // Distancia máxima para cada sensor ultrasonido en cm
-constexpr uint16_t MAX_DIST = 200;
+constexpr uint16_t MAX_DIST = 175;
 
 // El intervalo del ping para cada ultrasonido en ms
 constexpr int PING_INTERVALO = 20;
 
 // La estrategia a utilizar
-#define ESTRATEGIA simple
+#define ESTRATEGIA sdd
 
 #endif

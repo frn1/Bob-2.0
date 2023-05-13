@@ -5,7 +5,9 @@
 
 #include "ultrasonido.h"
 
-NewPing sensoresUlts[N_ULTS];
+NewPing sensoresUlts[N_ULTS] = {
+    NewPing(NOT_A_PIN, NOT_A_PIN)
+};
 
 uint16_t distanciasUlts[N_ULTS];
 
