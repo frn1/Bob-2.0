@@ -5,7 +5,9 @@
 #ifndef ESTRATEGIA_H
 #define ESTRATEGIA_H
 
+// Usar minusculas para los nombres
 #if ESTRATEGIA == simple
+
 #include "simple/stratSimple.h"
 
 #else

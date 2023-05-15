@@ -36,6 +36,9 @@ constexpr uint16_t MAX_DIST = 175;
 constexpr int PING_INTERVALO = 20;
 
 // La estrategia a utilizar
-#define ESTRATEGIA sdd
+//
+// Escribir en minuscula el nombre
+//
+#define ESTRATEGIA simple
 
 #endif
