@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 #include "../config.h"
+#include "../debug.h"
 
 #ifndef MOTORES_H
 #define MOTORES_H
@@ -29,6 +30,16 @@ enum Direccion
 // Actualizar la dirección de los motores
 inline void actualizarMotores(bool lAdel, bool lAtras, bool rAdel, bool rAtras)
 {
+  dprint("CAMBIO DE MOTOR (lAdel, lAtras, rAdel, rAtras): ");
+  dprint(lAdel ? "HIGH" : "low");
+  dprint('\t');
+  dprint(lAtras ? "HIGH" : "low");
+  dprint('\t');
+  dprint(rAdel ? "HIGH" : "low");
+  dprint('\t');
+  dprint(rAtras ? "HIGH" : "low");
+  dprintln();
+
   digitalWrite(MTR_L_ADELANTE, lAdel);
   digitalWrite(MTR_L_ATRAS, lAtras);
   digitalWrite(MTR_R_ADELANTE, rAdel);
@@ -49,6 +60,13 @@ inline void actualizarMotores(uint8_t pwmL, uint8_t pwmR)
   // Serial.print("\t");
   // Serial.print(pwmR);
   // Serial.println();
+
+  dprint("CAMBIO DE MOTOR (pwmL, pwmR): ");
+  dprint(pwmL);
+  dprint('\t');
+  dprint(pwmR);
+  dprintln();
+
   analogWrite(MTR_L_PWM, pwmL);
   analogWrite(MTR_R_PWM, pwmR);
 }
@@ -58,7 +76,6 @@ inline void actualizarMotores(uint8_t pwm)
 {
   actualizarMotores(pwm, pwm);
 }
-
 
 // Actualizar la fuerza de ambos motores y la dirección
 inline void actualizarMotores(Direccion dir, uint8_t pwm)

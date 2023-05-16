@@ -3,6 +3,11 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// #define DEBUG
+
+// La velocidad en baudios para debug por serial
+constexpr auto DEBUG_BAUD_RATE = 115200U;
+
 // Pines para la dirección de los motores
 constexpr uint8_t MTR_L_ADELANTE = NOT_A_PIN;
 constexpr uint8_t MTR_L_ATRAS = NOT_A_PIN;
