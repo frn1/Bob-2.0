@@ -16,10 +16,10 @@ constexpr uint8_t MTR_R_ADELANTE = A2;
 constexpr uint8_t MTR_R_ATRAS = A3;
 
 // La cantidad de sensores de piso
-constexpr uint8_t N_PISO = 0;
+constexpr uint8_t N_PISO = 1;
 
 // Los pines para los sensores del piso
-constexpr uint8_t PISO_PINS[N_PISO] = {};
+constexpr uint8_t PISO_PINS[N_PISO] = {9};
 
 // La cantidad de ultrasonicos
 constexpr uint8_t N_ULTS = 1;
@@ -39,14 +39,14 @@ constexpr uint8_t ULTS_ECHO[N_ULTS] = {6};
 constexpr auto MAX_DIST = 140U;
 
 // El intervalo del ping para cada ultrasonido en ms
-constexpr auto PING_INTERVALO = 1000U/40U;
+constexpr auto PING_INTERVALO = 1000U/10U;
 
-#define STRAT_PRUEBA -2
-#define STRAT_NADA -1
-#define STRAT_EMPUJE 0
-#define STRAT_FLANQUEO 1
+#define STRAT_PRUEBA -1
+#define STRAT_NADA 0
+#define STRAT_EMPUJE 1
+#define STRAT_FLANQUEO 2
 
 // La estrategia a utilizar
-#define ESTRATEGIA STRAT_NADA
+#define ESTRATEGIA STRAT_FLANQUEO
 
 #endif

@@ -29,7 +29,7 @@ void loopUlt()
     // Si es tiempo de mandar el ping ultrasonico, hacer eso
     if (millis() >= pingTimer[i])
     {
-      pingTimer[i] += PING_INTERVALO * N_ULTS;
+      pingTimer[i] += PING_INTERVALO;
       sensoresUlts[currentSensor].timer_stop();
       currentSensor = i;
       distanciasUlts[currentSensor] = 0;

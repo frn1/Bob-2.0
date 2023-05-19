@@ -24,10 +24,10 @@ enum Direccion
   // Freno = 0b1111
 };
 
-bool lAdelSt = false, lAtrasSt = false;
-bool rAdelSt = false, rAtrasSt = false;
+extern bool lAdelSt, lAtrasSt;
+extern bool rAdelSt, rAtrasSt;
 
-uint8_t pwmLSt, pwmRSt;
+extern uint8_t pwmLSt, pwmRSt;
 
 // Actualizar los motores
 inline void actualizarMotores() {

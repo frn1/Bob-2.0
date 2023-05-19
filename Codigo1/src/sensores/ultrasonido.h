@@ -21,7 +21,7 @@ inline void setupUlt(uint8_t n_sensor, uint8_t trig, uint8_t echo)
 // Setup todos los sensores ultrasonido
 inline void setupUlt()
 {
-  for (size_t i = 0; i < sizeof(ULTS_TRIG); i++)
+  for (size_t i = 0; i < N_ULTS; i++)
   {
     setupUlt(i, ULTS_TRIG[i], ULTS_ECHO[i]);
   }

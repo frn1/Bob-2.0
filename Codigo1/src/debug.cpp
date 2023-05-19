@@ -18,7 +18,7 @@ void printDebugInfo()
   dprintln();
 
   dprint("SENSORES ULTRASONICO: ");
-  for (size_t i = 0; i < N_PISO; i++)
+  for (size_t i = 0; i < N_ULTS; i++)
   {
     dprint(leerUlt(i));
     dprint('\t');
