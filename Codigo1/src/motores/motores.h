@@ -12,9 +12,6 @@ inline void setupMotores()
   pinMode(MTR_L_ATRAS, OUTPUT);
   pinMode(MTR_R_ADELANTE, OUTPUT);
   pinMode(MTR_R_ATRAS, OUTPUT);
-
-  pinMode(MTR_R_PWM, OUTPUT);
-  pinMode(MTR_L_PWM, OUTPUT);
 }
 
 enum Direccion
@@ -24,45 +21,88 @@ enum Direccion
   Izquierda = 0b1000,
   Adelante = 0b1010,
   Atras = 0b0101,
-  Freno = 0b1111
+  // Freno = 0b1111
 };
+
+bool lAdelSt = false, lAtrasSt = false;
+bool rAdelSt = false, rAtrasSt = false;
+
+uint8_t pwmLSt, pwmRSt;
+
+// Actualizar los motores
+inline void actualizarMotores() {
+  if (lAdelSt) {
+    analogWrite(pwmLSt, MTR_L_ADELANTE);
+  } else {
+    analogWrite(0, MTR_L_ADELANTE);
+  }
+
+  if (lAtrasSt) {
+    analogWrite(pwmLSt, MTR_L_ATRAS);
+  } else {
+    analogWrite(0, MTR_L_ATRAS);
+  }
+
+  if (lAdelSt) {
+    analogWrite(pwmLSt, MTR_L_ADELANTE);
+  } else {
+    analogWrite(0, MTR_L_ADELANTE);
+  }
+
+  if (lAtrasSt) {
+    analogWrite(pwmLSt, MTR_L_ATRAS);
+  } else {
+    analogWrite(0, MTR_L_ATRAS);
+  }
+
+  // Listo :)
+}
 
 // Actualizar la dirección de los motores
 inline void actualizarMotores(bool lAdel, bool lAtras, bool rAdel, bool rAtras)
 {
-  dprint("CAMBIO DE MOTOR (lAdel, lAtras, rAdel, rAtras): ");
-  dprint(lAdel ? "HIGH" : "low");
+  dprint("CAMBIO DE DIRECCION (lAdel, lAtras, rAdel, rAtras): ");
+  dprint(lAdel ? "ALTO" : "bajo");
   dprint('\t');
-  dprint(lAtras ? "HIGH" : "low");
+  dprint(lAtras ? "ALTO" : "bajo");
   dprint('\t');
-  dprint(rAdel ? "HIGH" : "low");
+  dprint(rAdel ? "ALTO" : "bajo");
   dprint('\t');
-  dprint(rAtras ? "HIGH" : "low");
+  dprint(rAtras ? "ALTO" : "bajo");
   dprintln();
 
-  digitalWrite(MTR_L_ADELANTE, lAdel);
-  digitalWrite(MTR_L_ATRAS, lAtras);
-  digitalWrite(MTR_R_ADELANTE, rAdel);
-  digitalWrite(MTR_R_ATRAS, rAtras);
+  lAdelSt = map(lAdel, 0, 255, 140, 255);
+  lAtrasSt = map(lAtras, 0, 255, 140, 255);
+  rAdelSt = map(rAdel, 0, 255, 100, 255);
+  rAtrasSt = map(rAtras, 0, 255, 100, 255);
+
+  actualizarMotores();
 }
 
 // Actualizar la dirección de los motores con el Enum
 inline void actualizarMotores(Direccion dir)
 {
+  // Serial.println(dir);
   actualizarMotores(bitRead(dir, 0), bitRead(dir, 1), bitRead(dir, 2), bitRead(dir, 3));
 }
 
 // Actualizar la fuerza de cada motor individualmente
 inline void actualizarMotores(uint8_t pwmL, uint8_t pwmR)
 {
-  dprint("CAMBIO DE MOTOR (pwmL, pwmR): ");
+  // Serial.print(pwmL);
+  // Serial.print("\t");
+  // Serial.print(pwmR);
+  // Serial.println();
+
+  dprint("CAMBIO DE PWM (pwmL, pwmR): ");
   dprint(pwmL);
   dprint('\t');
   dprint(pwmR);
   dprintln();
 
-  analogWrite(MTR_L_PWM, pwmL);
-  analogWrite(MTR_R_PWM, pwmR);
+  pwmLSt = pwmL;
+  pwmRSt = pwmL;
+  actualizarMotores();
 }
 
 // Actualizar la fuerza ambos motores

@@ -25,7 +25,7 @@ void loopStrat(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t
   }
   else
   {
-    actualizarMotores(Direccion::Adelante, 255, 140);
+    actualizarMotores(Direccion::Derecha, 255);
   }
 }
 
