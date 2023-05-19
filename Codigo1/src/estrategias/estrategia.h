@@ -28,6 +28,16 @@
 
 #include "prueba/strat.h"
 
+#elif ESTRATEGIA == STRAT_NADA
+
+void setupStrat() {
+    // Nada...
+}
+
+void loopStrat(uint16_t _, uint16_t __, uint16_t ___, uint16_t ____) {
+    // Nada...
+}
+
 #else
 
 #error La estrategia elegida no existe, por favor mire el archivo src/estrategias/estrategia.h para elegir otra en el archivo de configuración src/config.h
