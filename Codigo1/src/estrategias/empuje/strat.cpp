@@ -8,11 +8,12 @@
 
 void setupStrat()
 {
-  pinMode(LED_BUILTIN, OUTPUT);
+  // Nada...
 }
 
 void loopStrat(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
 {
+  dprintln("STRAT DE BUSCAR Y MATAR >:(");
   if (lecturaPiso > 500)
   {
     actualizarMotores(Direccion::Atras, 255);

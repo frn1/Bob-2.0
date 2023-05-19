@@ -12,14 +12,15 @@
 void setup()
 {
   setupDebug();
-  setupEstrategia();
+  // setupEstrategia();
   setupUlt();
+  setupPiso();
 }
 
 void loop()
 {
   loopUlt();
   loopPiso();
-  loopEstrategia(leerUlt(0), leerUlt(1), leerUlt(2), leerPiso(0));
+  // loopEstrategia(leerUlt(0), leerUlt(1), leerUlt(2), leerPiso(0));
   printDebugInfo();
 }

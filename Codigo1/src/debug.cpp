@@ -1,3 +1,5 @@
+#include "config.h"
+
 #ifdef DEBUG
 
 #include "debug.h"
@@ -26,8 +28,9 @@ void printDebugInfo()
 
 #else
 
-void printDebugInfo()
+inline void printDebugInfo()
 {
+  // No estamos en modo DEBUG asi que...
 }
 
 #endif

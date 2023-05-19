@@ -8,7 +8,7 @@
 
 void setupStrat()
 {
-  pinMode(LED_BUILTIN, OUTPUT);
+  // Nada...
 }
 
 enum EstadoStrat
@@ -21,6 +21,7 @@ uint32_t comienzoFlanqueo = 0;
 
 void loopStrat(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
 {
+  dprintln("STRAT DE FLANQUEO");
   if (lecturaPiso > 500)
   {
     actualizarMotores(Direccion::Atras, 255);
@@ -38,12 +39,9 @@ void loopStrat(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t
     }
     break;
   case Flanqueando:
-    if (millis() - comienzoFlanqueo < 20) {
-      actualizarMotores(Direccion::Adelante);
-    }
-    if (millis() - comienzoFlanqueo > 730)
+    if (millis() - comienzoFlanqueo < 20)
     {
-      estado = EstadoStrat::Buscando;
+      actualizarMotores(Direccion::Adelante, 255);
     }
 
     if (distanciaAdelante < MAX_DIST && distanciaAdelante != 0)
@@ -61,6 +59,11 @@ void loopStrat(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t
     else
     {
       actualizarMotores(255, 140); // Ir curvando a la izq
+
+      if (millis() - comienzoFlanqueo > 1000)
+      {
+        estado = EstadoStrat::Buscando;
+      }
     }
     break;
 

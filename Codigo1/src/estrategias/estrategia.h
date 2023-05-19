@@ -14,6 +14,20 @@
 
 #include "flanqueo/strat.h"
 
+#elif ESTRATEGIA == STRAT_PRUEBA
+
+#ifdef DEBUG
+
+#warning Estás usando la estrategia de prueba
+
+#elif
+
+#error Estás usando la estrategia de prueba sin DEBUG
+
+#endif
+
+#include "prueba/strat.h"
+
 #else
 
 #error La estrategia elegida no existe, por favor mire el archivo src/estrategias/estrategia.h para elegir otra en el archivo de configuración src/config.h

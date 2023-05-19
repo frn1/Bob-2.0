@@ -3,17 +3,17 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-// #define DEBUG
+#define DEBUG
 
 // La velocidad en baudios para debug por serial
 constexpr auto DEBUG_BAUD_RATE = 115200U;
 
 // Pines para la dirección de los motores
 
-constexpr uint8_t MTR_L_ADELANTE = NOT_A_PIN;
-constexpr uint8_t MTR_L_ATRAS = NOT_A_PIN;
-constexpr uint8_t MTR_R_ADELANTE = NOT_A_PIN;
-constexpr uint8_t MTR_R_ATRAS = NOT_A_PIN;
+constexpr uint8_t MTR_L_ADELANTE = A0;
+constexpr uint8_t MTR_L_ATRAS = A1;
+constexpr uint8_t MTR_R_ADELANTE = A2;
+constexpr uint8_t MTR_R_ATRAS = A3;
 
 // La cantidad de sensores de piso
 constexpr uint8_t N_PISO = 1;
@@ -29,7 +29,10 @@ constexpr uint8_t N_ULTS = 1;
 // El primero es de la izquierda, el segundo el del frente y
 // el tercero el de la derecha
 
+// Los pines TRIG del los ultrasonidos
 constexpr uint8_t ULTS_TRIG[N_ULTS] = {3};
+
+// Los pines ECHO del los ultrasonidos
 constexpr uint8_t ULTS_ECHO[N_ULTS] = {4};
 
 // Distancia máxima para cada sensor ultrasonido en cm
@@ -38,10 +41,11 @@ constexpr auto MAX_DIST = 140U;
 // El intervalo del ping para cada ultrasonido en ms
 constexpr auto PING_INTERVALO = 1000U/40U;
 
+#define STRAT_PRUEBA -2
 #define STRAT_EMPUJE 0
 #define STRAT_FLANQUEO 1
 
 // La estrategia a utilizar
-#define ESTRATEGIA STRAT_EMPUJE
+#define ESTRATEGIA STRAT_PRUEBA
 
 #endif
