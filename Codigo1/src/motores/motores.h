@@ -49,18 +49,12 @@ inline void actualizarMotores(bool lAdel, bool lAtras, bool rAdel, bool rAtras)
 // Actualizar la dirección de los motores con el Enum
 inline void actualizarMotores(Direccion dir)
 {
-  // Serial.println(dir);
   actualizarMotores(bitRead(dir, 0), bitRead(dir, 1), bitRead(dir, 2), bitRead(dir, 3));
 }
 
 // Actualizar la fuerza de cada motor individualmente
 inline void actualizarMotores(uint8_t pwmL, uint8_t pwmR)
 {
-  // Serial.print(pwmL);
-  // Serial.print("\t");
-  // Serial.print(pwmR);
-  // Serial.println();
-
   dprint("CAMBIO DE MOTOR (pwmL, pwmR): ");
   dprint(pwmL);
   dprint('\t');
