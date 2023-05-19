@@ -35,15 +35,15 @@ constexpr uint8_t ULTS_TRIG[N_ULTS] = {3};
 constexpr uint8_t ULTS_ECHO[N_ULTS] = {4};
 
 // Distancia máxima para cada sensor ultrasonido en cm
-constexpr uint16_t MAX_DIST = 175;
+constexpr uint16_t MAX_DIST = 140;
 
 // El intervalo del ping para cada ultrasonido en ms
-constexpr int PING_INTERVALO = 20;
+constexpr int PING_INTERVALO = 1000/40;
+
+#define STRAT_EMPUJE 0
+#define STRAT_FLANQUEO 1
 
 // La estrategia a utilizar
-//
-// Escribir en minuscula el nombre
-//
-#define ESTRATEGIA simple
+#define ESTRATEGIA STRAT_FLANQUEO
 
 #endif

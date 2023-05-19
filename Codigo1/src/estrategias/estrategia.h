@@ -6,9 +6,13 @@
 #define ESTRATEGIA_H
 
 // Usar minusculas para los nombres
-#if ESTRATEGIA == simple
+#if ESTRATEGIA == STRAT_EMPUJE
 
-#include "simple/stratSimple.h"
+#include "empuje/strat.h"
+
+#elif ESTRATEGIA == STRAT_FLANQUEO
+
+#include "flanqueo/strat.h"
 
 #else
 
