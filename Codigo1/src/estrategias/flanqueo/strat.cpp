@@ -2,11 +2,13 @@
 
 #if ESTRATEGIA == STRAT_FLANQUEO
 
+#include "../estrategia.h"
+
 #include "../../motores/motores.h"
 
 #include "strat.h"
 
-void setupStrat()
+void setupEstrategia()
 {
   // Nada...
 }
@@ -19,7 +21,7 @@ enum EstadoStrat
 
 uint32_t comienzoFlanqueo = 0;
 
-void loopStrat(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
+void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
 {
   dprintln("STRAT DE FLANQUEO");
   if (lecturaPiso > 500)

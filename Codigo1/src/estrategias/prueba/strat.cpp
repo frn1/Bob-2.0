@@ -2,11 +2,13 @@
 
 #if ESTRATEGIA == STRAT_PRUEBA
 
+#include "../estrategia.h"
+
 #include "../../motores/motores.h"
 
 #include "strat.h"
 
-void setupStrat()
+void setupEstrategia()
 {
   pinMode(LED_BUILTIN, OUTPUT);
 }
@@ -18,7 +20,7 @@ void testMotores(Direccion dir) {
   delay(250);
 }
 
-void loopStrat(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
+void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
 {
   dprintln("STRAT DE PRUEBA");
   digitalWrite(LED_BUILTIN, HIGH);

@@ -5,9 +5,9 @@
 
 #if ESTRATEGIA == STRAT_FLANQUEO
 
-void setupStrat();
+void setupEstrategia();
 
-void loopStrat(uint16_t, uint16_t, uint16_t, uint16_t);
+void loopEstrategia(uint16_t, uint16_t, uint16_t, uint16_t);
 
 #endif
 

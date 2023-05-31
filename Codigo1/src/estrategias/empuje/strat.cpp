@@ -2,16 +2,18 @@
 
 #if ESTRATEGIA == STRAT_EMPUJE
 
+#include "../estrategia.h"
+
 #include "../../motores/motores.h"
 
 #include "strat.h"
 
-void setupStrat()
+void setupEstrategia()
 {
   // Nada...
 }
 
-void loopStrat(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
+void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
 {
   dprintln("STRAT DE BUSCAR Y MATAR >:(");
   if (lecturaPiso > 500)
