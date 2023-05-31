@@ -101,7 +101,7 @@ inline void actualizarMotores(uint8_t pwmL, uint8_t pwmR)
   dprintln();
 
   pwmLSt = pwmL;
-  pwmRSt = pwmL;
+  pwmRSt = pwmR;
   actualizarMotores();
 }
 
