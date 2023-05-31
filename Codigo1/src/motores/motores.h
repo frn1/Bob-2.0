@@ -63,11 +63,11 @@ inline void actualizarMotores(bool lAdel, bool lAtras, bool rAdel, bool rAtras)
 {
   dprint("CAMBIO DE DIRECCION (lAdel, lAtras, rAdel, rAtras): ");
   dprint(lAdel ? "ALTO" : "bajo");
-  dprint('\t');
+  dprint(' ');
   dprint(lAtras ? "ALTO" : "bajo");
-  dprint('\t');
+  dprint(' ');
   dprint(rAdel ? "ALTO" : "bajo");
-  dprint('\t');
+  dprint(' ');
   dprint(rAtras ? "ALTO" : "bajo");
   dprintln();
 
@@ -96,7 +96,7 @@ inline void actualizarMotores(uint8_t pwmL, uint8_t pwmR)
 
   dprint("CAMBIO DE PWM (pwmL, pwmR): ");
   dprint(pwmL);
-  dprint('\t');
+  dprint(' ');
   dprint(pwmR);
   dprintln();
 
