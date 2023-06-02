@@ -39,7 +39,7 @@ constexpr uint8_t ULTS_ECHO[N_ULTS] = {6};
 constexpr auto MAX_DIST = 140U;
 
 // El intervalo del ping para cada ultrasonido en ms
-constexpr auto PING_INTERVALO = 1000U/10U;
+constexpr auto PING_INTERVALO = 1000U/6U;
 
 #define STRAT_PRUEBA -1
 #define STRAT_NADA 0
@@ -47,6 +47,6 @@ constexpr auto PING_INTERVALO = 1000U/10U;
 #define STRAT_FLANQUEO 2
 
 // La estrategia a utilizar
-#define ESTRATEGIA STRAT_FLANQUEO
+#define ESTRATEGIA STRAT_EMPUJE
 
 #endif
