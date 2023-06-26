@@ -15,6 +15,7 @@ void setup()
   setupEstrategia();
   setupUlt();
   setupPiso();
+  setupMotores();
 }
 
 void loop()
@@ -22,5 +23,5 @@ void loop()
   loopUlt();
   loopPiso();
   loopEstrategia(leerUlt(0), leerUlt(1), leerUlt(2), leerPiso(0));
-  printDebugInfo();
+  // printDebugInfo();
 }

@@ -32,27 +32,27 @@ extern uint8_t pwmLSt, pwmRSt;
 // Actualizar los motores
 inline void actualizarMotores() {
   if (lAdelSt) {
-    analogWrite(pwmLSt, MTR_L_ADELANTE);
+    analogWrite(MTR_L_ADELANTE, pwmLSt);
   } else {
-    analogWrite(0, MTR_L_ADELANTE);
+    analogWrite(MTR_L_ADELANTE, 0);
   }
 
   if (lAtrasSt) {
-    analogWrite(pwmLSt, MTR_L_ATRAS);
+    analogWrite(MTR_L_ATRAS, pwmLSt);
   } else {
-    analogWrite(0, MTR_L_ATRAS);
+    analogWrite(MTR_L_ATRAS, 0);
   }
 
-  if (lAdelSt) {
-    analogWrite(pwmLSt, MTR_L_ADELANTE);
+  if (rAdelSt) {
+    analogWrite(MTR_R_ADELANTE, pwmRSt);
   } else {
-    analogWrite(0, MTR_L_ADELANTE);
+    analogWrite(MTR_R_ADELANTE, 0);
   }
 
-  if (lAtrasSt) {
-    analogWrite(pwmLSt, MTR_L_ATRAS);
+  if (rAtrasSt) {
+    analogWrite(MTR_R_ATRAS, pwmRSt);
   } else {
-    analogWrite(0, MTR_L_ATRAS);
+    analogWrite(MTR_R_ATRAS, 0);
   }
 
   // Listo :)
@@ -71,10 +71,10 @@ inline void actualizarMotores(bool lAdel, bool lAtras, bool rAdel, bool rAtras)
   dprint(rAtras ? "ALTO" : "bajo");
   dprintln();
 
-  lAdelSt = map(lAdel, 0, 255, 140, 255);
-  lAtrasSt = map(lAtras, 0, 255, 140, 255);
-  rAdelSt = map(rAdel, 0, 255, 100, 255);
-  rAtrasSt = map(rAtras, 0, 255, 100, 255);
+  lAdelSt = map(lAdel, 0, 255, 0, 255);
+  lAtrasSt = map(lAtras, 0, 255, 0, 255);
+  rAdelSt = map(rAdel, 0, 255, 0, 255);
+  rAtrasSt = map(rAtras, 0, 255, 0, 255);
 
   actualizarMotores();
 }
