@@ -16,7 +16,7 @@ extern NewPing sensoresUlts[N_ULTS];
 inline void setupUlt(uint8_t n_sensor, uint8_t trig, uint8_t echo)
 {
   distanciasUlts[n_sensor] = Smoothed<uint16_t>();
-  distanciasUlts[n_sensor].begin(SMOOTHED_EXPONENTIAL, 6);
+  distanciasUlts[n_sensor].begin(SMOOTHED_AVERAGE, 6);
   sensoresUlts[n_sensor] = NewPing(trig, echo, MAX_DIST);
 }
 
