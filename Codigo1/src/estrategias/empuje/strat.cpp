@@ -28,7 +28,7 @@ void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uin
   }
   else
   {
-    actualizarMotores(Direccion::Derecha, 255);
+    actualizarMotores(Direccion::Derecha, 160);
   }
 }
 
