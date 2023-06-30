@@ -23,5 +23,5 @@ void loop()
   loopUlt();
   loopPiso();
   loopEstrategia(leerUlt(0)->get(), leerUlt(1)->get(), leerUlt(2)->get(), leerPiso(0));
-  // printDebugInfo();
+  printDebugInfo();
 }
