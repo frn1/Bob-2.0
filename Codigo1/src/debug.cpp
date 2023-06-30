@@ -13,7 +13,7 @@ void printDebugInfo()
   for (size_t i = 0; i < N_PISO; i++)
   {
     dprint(leerPiso(i));
-    dprint('\t');
+    dprint(' ');
   }
   dprintln();
 
@@ -21,7 +21,7 @@ void printDebugInfo()
   for (size_t i = 0; i < N_ULTS; i++)
   {
     dprint(leerUlt(i));
-    dprint('\t');
+    dprint(' ');
   }
   dprintln();
 }
