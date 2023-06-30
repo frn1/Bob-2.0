@@ -20,7 +20,7 @@ void printDebugInfo()
   dprint("SENSORES ULTRASONICO: ");
   for (size_t i = 0; i < N_ULTS; i++)
   {
-    dprint(leerUlt(i));
+    dprint(leerUlt(i).get());
     dprint(' ');
   }
   dprintln();
