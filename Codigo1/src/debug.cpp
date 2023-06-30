@@ -28,7 +28,7 @@ void printDebugInfo()
 
 #else
 
-inline void printDebugInfo()
+void printDebugInfo()
 {
   // No estamos en modo DEBUG asi que...
 }
