@@ -39,7 +39,7 @@ constexpr uint8_t ULTS_ECHO[N_ULTS] = {4, 5, 6};
 constexpr auto MAX_DIST = 140U;
 
 // El intervalo del ping para cada ultrasonido en ms
-constexpr auto PING_INTERVALO = 1000U/20U;
+constexpr auto PING_INTERVALO = 1000U/25U;
 
 #define STRAT_PRUEBA -1
 #define STRAT_NADA 0
