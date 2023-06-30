@@ -1,16 +1,18 @@
+#include <Smoothed.h>
+
 #include "../config.h"
 
 #ifndef PISO_H
 #define PISO_H
 
 // La lectura de cada sensor del piso
-extern uint16_t lecturasPiso[N_PISO];
+extern Smoothed<uint16_t> lecturasPiso[N_PISO];
 
 // Setup un sensor del piso
 inline void setupPiso(uint8_t n_sensor, uint8_t pin)
 {
   pinMode(pin, INPUT);
-  lecturasPiso[n_sensor] = 0;
+  lecturasPiso[n_sensor] = Smoothed<uint16_t>(SMOOTHED_AVERAGE, 4);
 }
 
 // Setup todos los sensores del piso
@@ -26,7 +28,7 @@ inline void setupPiso()
 void loopPiso();
 
 // Leer el estado de un sensor del piso
-inline uint16_t leerPiso(uint8_t n_sensor) {
+inline Smoothed<uint16_t> leerPiso(uint8_t n_sensor) {
   return lecturasPiso[n_sensor];
 }
 
