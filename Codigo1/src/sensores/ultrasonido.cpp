@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <NewPing.h>
+#include <Smoothed.h>
 
 #include "../config.h"
 
