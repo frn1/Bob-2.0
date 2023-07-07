@@ -41,12 +41,13 @@ constexpr auto MAX_DIST = 140U;
 // El intervalo del ping para cada ultrasonido en ms
 constexpr auto PING_INTERVALO = 1000U/10U;
 
+#define STRAT_PRUEBA_TATAMI -2
 #define STRAT_PRUEBA -1
 #define STRAT_NADA 0
 #define STRAT_EMPUJE 1
 #define STRAT_FLANQUEO 2
 
 // La estrategia a utilizar
-#define ESTRATEGIA STRAT_PRUEBA
+#define ESTRATEGIA STRAT_PRUEBA_TATAMI
 
 #endif
