@@ -12,7 +12,7 @@ extern Smoothed<uint16_t> lecturasPiso[N_PISO];
 inline void setupPiso(uint8_t n_sensor, uint8_t pin)
 {
   pinMode(pin, INPUT);
-  lecturasPiso[n_sensor] = Smoothed<uint16_t>;
+  lecturasPiso[n_sensor] = Smoothed<uint16_t>();
   lecturasPiso[n_sensor].begin(SMOOTHED_AVERAGE, 4);
 }
 
