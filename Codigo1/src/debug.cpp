@@ -12,7 +12,7 @@ void printDebugInfo()
   dprint("SENSORES PISO: ");
   for (size_t i = 0; i < N_PISO; i++)
   {
-    dprint(leerPiso(i));
+    dprint(leerPiso(i)->get());
     dprint(' ');
   }
   dprintln();
