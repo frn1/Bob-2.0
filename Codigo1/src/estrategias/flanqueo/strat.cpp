@@ -21,10 +21,10 @@ enum EstadoStrat
 
 uint32_t comienzoFlanqueo = 0;
 
-void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
+void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPisoL, uint16_t lecturaPisoRlecturaPiso)
 {
   dprintln("STRAT DE FLANQUEO");
-  if (lecturaPiso > 500)
+  if (lecturaPisoL > 500)
   {
     actualizarMotores(Direccion::Atras, 255);
     delay(100);

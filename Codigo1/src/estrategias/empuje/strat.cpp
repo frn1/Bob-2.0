@@ -13,10 +13,10 @@ void setupEstrategia()
   // Nada...
 }
 
-void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
+void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPisoL, uint16_t lecturaPisoR)
 {
   dprintln("STRAT DE BUSCAR Y MATAR >:(");
-  if (lecturaPiso > 500)
+  if (lecturaPisoL > 500)
   {
     actualizarMotores(Direccion::Atras, 255);
     delay(300);

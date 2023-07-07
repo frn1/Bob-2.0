@@ -20,7 +20,7 @@ void testMotores(Direccion dir) {
   delay(250);
 }
 
-void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPiso)
+void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPisoL, uint16_t lecturaPisoR)
 {
   dprintln("STRAT DE PRUEBA");
   digitalWrite(LED_BUILTIN, HIGH);
