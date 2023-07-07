@@ -3,7 +3,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-// #define DEBUG
+#define DEBUG
 
 // La velocidad en baudios para debug por serial
 constexpr auto DEBUG_BAUD_RATE = 115200U;

@@ -28,8 +28,8 @@ inline void setupPiso()
 void loopPiso();
 
 // Leer el estado de un sensor del piso
-inline Smoothed<uint16_t> leerPiso(uint8_t n_sensor) {
-  return lecturasPiso[n_sensor];
+inline Smoothed<uint16_t>* leerPiso(uint8_t n_sensor) {
+  return &lecturasPiso[n_sensor];
 }
 
 #endif
