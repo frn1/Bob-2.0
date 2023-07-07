@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <NewPing.h>
+#include <Smoothed.h>
 
 #include "../config.h"
 
@@ -11,7 +12,7 @@ NewPing sensoresUlts[N_ULTS] = {
     NewPing(NOT_A_PIN, NOT_A_PIN)
 };
 
-uint16_t distanciasUlts[N_ULTS];
+Smoothed<uint16_t> distanciasUlts[N_ULTS];
 
 unsigned long ultimoCheck = millis();
 
@@ -21,7 +22,7 @@ void loopUlt()
   {
     for (uint8_t i = 0; i < N_ULTS; i++)
     {
-      distanciasUlts[i] = sensoresUlts[i].ping_cm(MAX_DIST);
+      distanciasUlts[i].add(sensoresUlts[i].ping_cm(MAX_DIST));
     }
   }
 }
