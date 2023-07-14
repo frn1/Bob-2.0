@@ -8,9 +8,18 @@
 
 #include "strat.h"
 
+enum Estado {
+  BuscandoL = 0,
+  BuscandoR,
+  Empujando,
+  EvitandoCaerse
+} estado;
+  
+
 void setupEstrategia()
 {
-  // Nada...
+  // Elegir aleatoriamente entre Buscando L y R
+  estado = rand() % 2;
 }
 
 void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPisoL, uint16_t lecturaPisoR)
