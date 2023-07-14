@@ -46,6 +46,7 @@ constexpr auto PING_INTERVALO = 1000U/25U;
 #define STRAT_NADA 0
 #define STRAT_EMPUJE 1
 #define STRAT_FLANQUEO 2
+#define STRAT_BLUETOOTH 3
 
 // La estrategia a utilizar
 #define ESTRATEGIA STRAT_PRUEBA_TATAMI
