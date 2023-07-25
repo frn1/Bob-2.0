@@ -2,7 +2,7 @@
 #include <NewPing.h>
 #include <Smoothed.h>
 
-#include "../config.h"
+#include "../config.hpp"
 
 #ifndef ULT_DEF
 #define ULT_DEF

@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#include "../config.h"
+#include "../config.hpp"
 
 #ifndef ESTRATEGIA_H
 #define ESTRATEGIA_H

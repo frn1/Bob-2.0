@@ -1,4 +1,4 @@
-#include "../../config.h"
+#include "../../config.hpp"
 
 #ifndef STRAT_PRUEBA_TATAMI_H
 #define STRAT_PRUEBA_TATAMI_H
