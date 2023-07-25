@@ -1,4 +1,4 @@
-#include "../../config.h"
+#include "../../config.hpp"
 
 #ifndef STRAT_FLANQUEO_H
 #define STRAT_FLANQUEO_H

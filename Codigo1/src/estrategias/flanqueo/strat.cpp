@@ -1,12 +1,12 @@
-#include "../../config.h"
+#include "../../config.hpp"
 
 #if ESTRATEGIA == STRAT_FLANQUEO
 
-#include "../estrategia.h"
+#include "../estrategia.hpp"
 
-#include "../../motores/motores.h"
+#include "../../motores/motores.hpp"
 
-#include "strat.h"
+#include "strat.hpp"
 
 void setupEstrategia()
 {

@@ -1,6 +1,6 @@
-#include "../config.h"
+#include "../config.hpp"
 
-#include "piso.h"
+#include "piso.hpp"
 
 uint16_t lecturasPiso[N_PISO];
 

@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
-#include "../config.h"
-#include "../debug.h"
+#include "../config.hpp"
+#include "../debug.hpp"
 
 #ifndef MOTORES_H
 #define MOTORES_H

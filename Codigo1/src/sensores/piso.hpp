@@ -1,4 +1,4 @@
-#include "../config.h"
+#include "../config.hpp"
 
 #ifndef PISO_H
 #define PISO_H

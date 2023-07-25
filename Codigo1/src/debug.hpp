@@ -1,4 +1,4 @@
-#include "config.h"
+#include "config.hpp"
 
 #ifndef DEBUG_H
 #define DEBUG_H

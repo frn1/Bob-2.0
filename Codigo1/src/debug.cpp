@@ -1,11 +1,11 @@
-#include "config.h"
+#include "config.hpp"
 
 #ifdef DEBUG
 
-#include "debug.h"
+#include "debug.hpp"
 
-#include "sensores/piso.h"
-#include "sensores/ultrasonido.h"
+#include "sensores/piso.hpp"
+#include "sensores/ultrasonido.hpp"
 
 void printDebugInfo()
 {

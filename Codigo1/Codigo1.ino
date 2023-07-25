@@ -1,13 +1,13 @@
-#include "src/config.h"
+#include "src/config.hpp"
 
-#include "src/debug.h"
+#include "src/debug.hpp"
 
-#include "src/sensores/ultrasonido.h"
-#include "src/sensores/piso.h"
+#include "src/sensores/ultrasonido.hpp"
+#include "src/sensores/piso.hpp"
 
-#include "src/motores/motores.h"
+#include "src/motores/motores.hpp"
 
-#include "src/estrategias/estrategia.h"
+#include "src/estrategias/estrategia.hpp"
 
 void setup()
 {

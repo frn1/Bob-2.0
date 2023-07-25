@@ -1,4 +1,4 @@
-#include "../../config.h"
+#include "../../config.hpp"
 
 #ifndef STRAT_EMPUJE_H
 #define STRAT_EMPUJE_H

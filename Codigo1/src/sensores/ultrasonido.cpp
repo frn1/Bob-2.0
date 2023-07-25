@@ -2,9 +2,9 @@
 #include <NewPing.h>
 #include <Smoothed.h>
 
-#include "../config.h"
+#include "../config.hpp"
 
-#include "ultrasonido.h"
+#include "ultrasonido.hpp"
 
 NewPing sensoresUlts[N_ULTS] = {
     NewPing(NOT_A_PIN, NOT_A_PIN),
