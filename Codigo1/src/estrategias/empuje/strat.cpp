@@ -8,27 +8,68 @@
 
 #include "strat.hpp"
 
+enum Estado
+{
+  BuscandoL = 0,
+  BuscandoR,
+  Empujando,
+  EvitandoCaerse
+} estado;
+
+unsigned long ultimoCambio = millis();
+
+// Buscar y matar setup
 void setupEstrategia()
 {
-  // Nada...
+  // Elegir aleatoriamente entre Buscando L y R
+  cambiarEstado((Estado)(rand() % 2));
 }
 
+inline void cambiarEstado(Estado nuevoEstado)
+{
+  estado = nuevoEstado;
+  ultimoCambio = millis();
+}
+
+inline unsigned long tiempoPasado(unsigned long tiempo)
+{
+  return tiempo - ultimoCambio;
+}
+
+// Buscar y matar loop
 void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPisoL, uint16_t lecturaPisoR)
 {
   dprintln("STRAT DE BUSCAR Y MATAR >:(");
+
+  unsigned long tiempo = millis();
+
   if (lecturaPisoL < 500 || lecturaPisoR < 500)
   {
-    actualizarMotores(Direccion::Atras, 200);
-    delay(200);
+    cambiarEstado(Estado::EvitandoCaerse);
   }
-  
-  if (distanciaAdelante < 100 && distanciaAdelante != 0)
+  else if (distanciaAdelante < 100 && distanciaAdelante != 0)
   {
-    actualizarMotores(Direccion::Adelante, 140);
+    cambiarEstado(Estado::Empujando);
   }
-  else
+
+  switch (estado)
   {
-    actualizarMotores(Direccion::Derecha, 130);
+  case EvitandoCaerse:
+    actualizarMotores(Direccion::Atras, 255);
+    if (tiempoPasado(tiempo) > 100)
+    {
+      cambiarEstado((Estado)(rand() % 2));
+    }
+    break;
+  case Empujando:
+    actualizarMotores(Direccion::Adelante, 255);
+    break;  
+  case BuscandoL:
+    actualizarMotores(Direccion::Izquierda, 135);
+    break;
+  case BuscandoR:
+    actualizarMotores(Direccion::Derecha, 135);
+    break;
   }
 }
 
