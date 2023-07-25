@@ -8,15 +8,16 @@
 
 #include "strat.hpp"
 
+#define BT Serial
+
 void setupEstrategia()
 {
-  Serial.begin(115200);
+  BT.begin(115200);
 }
 
 void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPisoL, uint16_t lecturaPisoR)
 {
-  Serial.println("HOLA");
-  switch (Serial.read())
+  switch (BT.read())
   {
   case 'F':
     actualizarMotores(Direccion::Adelante);
