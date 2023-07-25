@@ -1,0 +1,6 @@
+compile:
+  libraries:
+    - "NewPing"
+    - "Smoothed"
+  platforms:
+    - micro
