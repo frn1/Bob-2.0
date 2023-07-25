@@ -25,4 +25,4 @@ void loopEstrategia(uint16_t, uint16_t, uint16_t, uint16_t, uint16_t);
 
 #endif
 
-#endif ESTRATEGIA_H
+#endif

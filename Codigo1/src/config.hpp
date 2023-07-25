@@ -19,7 +19,8 @@ constexpr uint8_t MTR_R_ATRAS = A2;
 constexpr uint8_t N_PISO = 2;
 
 // Los pines para los sensores del piso
-constexpr uint8_t PISO_PINS[N_PISO] = {A9, A10};
+constexpr uint8_t PISO_PINS[N_PISO] = {9, 10};
+// constexpr uint8_t PISO_PINS[N_PISO] = {A9, A10};
 
 // La cantidad de ultrasonicos
 constexpr uint8_t N_ULTS = 3;
@@ -49,6 +50,6 @@ constexpr auto PING_INTERVALO = 1000U/25U;
 #define STRAT_BLUETOOTH 3
 
 // La estrategia a utilizar
-#define ESTRATEGIA STRAT_EMPUJE
+#define ESTRATEGIA STRAT_BLUETOOTH
 
 #endif

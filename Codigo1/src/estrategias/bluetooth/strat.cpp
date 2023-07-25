@@ -15,57 +15,71 @@ void setupEstrategia()
   BT.begin(115200);
 }
 
+uint8_t porcentaje = 0;
+
 void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPisoL, uint16_t lecturaPisoR)
 {
   switch (BT.read())
   {
-  case 'F':
-    actualizarMotores(Direccion::Adelante);
+  case 'G': // Adelante Izq.
+    actualizarMotores(Direccion::Adelante, map(porcentaje, 0, 10, 0, 127), map(porcentaje, 0, 10, 0, 255));
     break;
-  case 'B':
-    actualizarMotores(Direccion::Atras);
+  case 'F': // Adelante
+    actualizarMotores(Direccion::Adelante, map(porcentaje, 0, 10, 0, 255));
     break;
-  case 'L':
-    actualizarMotores(Direccion::Izquierda);
+  case 'I': // Adelante Der.
+    actualizarMotores(Direccion::Adelante, map(porcentaje, 0, 10, 0, 255), map(porcentaje, 0, 10, 0, 127));
     break;
-  case 'R':
-    actualizarMotores(Direccion::Derecha);
+  case 'H': // Atras Izq.
+    actualizarMotores(Direccion::Atras, map(porcentaje, 0, 10, 0, 127), map(porcentaje, 0, 10, 0, 255));
     break;
-  case 'S':
+  case 'B': // Atras
+    actualizarMotores(Direccion::Atras, map(porcentaje, 0, 10, 0, 255));
+    break;
+  case 'J': // Atras Der.
+    actualizarMotores(Direccion::Atras, map(porcentaje, 0, 10, 0, 255), map(porcentaje, 0, 10, 0, 127));
+    break;
+  case 'L': // Izquierda
+    actualizarMotores(Direccion::Izquierda, map(porcentaje, 0, 10, 0, 255));
+    break;
+  case 'R': // Derecha
+    actualizarMotores(Direccion::Derecha, map(porcentaje, 0, 10, 0, 255));
+    break;
+  case 'S': // Parar
     actualizarMotores(Direccion::Nada);
     break;
   case '0':
-    actualizarMotores(0);
+    porcentaje = 0;
     break;
   case '1':
-    actualizarMotores(0.1*255);
+    porcentaje = 1;
     break;
   case '2':
-    actualizarMotores(0.2*255);
+    porcentaje = 2;
     break;
   case '3':
-    actualizarMotores(0.3*255);
+    porcentaje = 3;
     break;
   case '4':
-    actualizarMotores(0.4*255);
+    porcentaje = 4;
     break;
   case '5':
-    actualizarMotores(0.5*255);
+    porcentaje = 5;
     break;
   case '6':
-    actualizarMotores(0.6*255);
+    porcentaje = 6;
     break;
   case '7':
-    actualizarMotores(0.7*255);
+    porcentaje = 7;
     break;
   case '8':
-    actualizarMotores(0.8*255);
+    porcentaje = 8;
     break;
   case '9':
-    actualizarMotores(0.9*255);
+    porcentaje = 9;
     break;
   case 'q':
-    actualizarMotores(255);
+    porcentaje = 10;
     break;
   default:
     break;
