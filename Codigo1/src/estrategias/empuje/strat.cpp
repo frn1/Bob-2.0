@@ -63,7 +63,7 @@ void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uin
     break;
   case Empujando:
     actualizarMotores(Direccion::Adelante, 255);
-    break;
+    break;  
   case BuscandoL:
     actualizarMotores(Direccion::Izquierda, 135);
     break;
