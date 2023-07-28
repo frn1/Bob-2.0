@@ -11,7 +11,7 @@ class Ultrasonido : public NewPing
 {
 public:
   Ultrasonido() : NewPing(NOT_A_PIN, NOT_A_PIN, 0) {}
-  Ultrasonido(auto trig, auto echo, auto max_dist) : NewPing(trig, echo, max_dist) {}
+  Ultrasonido(uint8_t trig, uint8_t echo, unsigned int max_dist) : NewPing(trig, echo, max_dist) {}
 };
 
 // La distancia leida en cada ultrasonido

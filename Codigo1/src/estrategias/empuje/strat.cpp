@@ -18,17 +18,17 @@ enum Estado
 
 unsigned long ultimoCambio = millis();
 
+void cambiarEstado(Estado nuevoEstado)
+{
+  estado = nuevoEstado;
+  ultimoCambio = millis();
+}
+
 // Buscar y matar setup
 void setupEstrategia()
 {
   // Elegir aleatoriamente entre Buscando L y R
   cambiarEstado((Estado)(rand() % 2));
-}
-
-inline void cambiarEstado(Estado nuevoEstado)
-{
-  estado = nuevoEstado;
-  ultimoCambio = millis();
 }
 
 inline unsigned long tiempoPasado(unsigned long tiempo)
