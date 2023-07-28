@@ -7,17 +7,24 @@
 #ifndef ULT_DEF
 #define ULT_DEF
 
+class Ultrasonido : public NewPing
+{
+public:
+  Ultrasonido() : NewPing(NOT_A_PIN, NOT_A_PIN, 0) {}
+  Ultrasonido(auto trig, auto echo, auto max_dist) : NewPing(trig, echo, max_dist) {}
+};
+
 // La distancia leida en cada ultrasonido
 extern Smoothed<uint16_t> distanciasUlts[N_ULTS];
 
-extern NewPing sensoresUlts[N_ULTS];
+extern Ultrasonido sensoresUlts[N_ULTS];
 
 // Setup un sensor ultrasonido
 inline void setupUlt(uint8_t n_sensor, uint8_t trig, uint8_t echo)
 {
   distanciasUlts[n_sensor] = Smoothed<uint16_t>();
   distanciasUlts[n_sensor].begin(SMOOTHED_AVERAGE, 6);
-  sensoresUlts[n_sensor] = NewPing(trig, echo, MAX_DIST);
+  sensoresUlts[n_sensor] = Ultrasonido(trig, echo, MAX_DIST);
 }
 
 // Setup todos los sensores ultrasonido

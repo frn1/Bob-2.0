@@ -50,6 +50,6 @@ constexpr auto PING_INTERVALO = 1000U/25U;
 #define STRAT_BLUETOOTH 3
 
 // La estrategia a utilizar
-#define ESTRATEGIA STRAT_BLUETOOTH
+#define ESTRATEGIA STRAT_EMPUJE
 
 #endif

@@ -6,11 +6,7 @@
 
 #include "ultrasonido.hpp"
 
-NewPing sensoresUlts[N_ULTS] = {
-    NewPing(NOT_A_PIN, NOT_A_PIN),
-    NewPing(NOT_A_PIN, NOT_A_PIN),
-    NewPing(NOT_A_PIN, NOT_A_PIN)
-};
+Ultrasonido sensoresUlts[N_ULTS];
 
 Smoothed<uint16_t> distanciasUlts[N_ULTS];
 
