@@ -23,7 +23,7 @@ extern Ultrasonido sensoresUlts[N_ULTS];
 inline void setupUlt(uint8_t n_sensor, uint8_t trig, uint8_t echo)
 {
   distanciasUlts[n_sensor] = Smoothed<uint16_t>();
-  distanciasUlts[n_sensor].begin(SMOOTHED_AVERAGE, 6);
+  distanciasUlts[n_sensor].begin(SMOOTHED_AVERAGE, 5);
   sensoresUlts[n_sensor] = Ultrasonido(trig, echo, MAX_DIST);
 }
 

@@ -3,7 +3,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define DEBUG
+// #define DEBUG
 
 // La velocidad en baudios para debug por serial
 constexpr auto DEBUG_BAUD_RATE = 115200U;
@@ -22,7 +22,7 @@ constexpr uint8_t N_PISO = 2;
 constexpr uint8_t PISO_PINS[N_PISO] = {9, 10};
 
 // La cantidad de ultrasonicos
-constexpr uint8_t N_ULTS = 3;
+constexpr uint8_t N_ULTS = 1;
 
 // Los pines para los ultrasonidos
 // 
@@ -30,16 +30,16 @@ constexpr uint8_t N_ULTS = 3;
 // el tercero el de la derecha
 
 // Los pines TRIG del los ultrasonidos
-constexpr uint8_t ULTS_TRIG[N_ULTS] = {3, 3, 3};
+constexpr uint8_t ULTS_TRIG[N_ULTS] = {3};
 
 // Los pines ECHO del los ultrasonidos
-constexpr uint8_t ULTS_ECHO[N_ULTS] = {4, 5, 6};
+constexpr uint8_t ULTS_ECHO[N_ULTS] = {5};
 
 // Distancia máxima para cada sensor ultrasonido en cm
-constexpr auto MAX_DIST = 70U;
+constexpr auto MAX_DIST = 65U;
 
 // El intervalo del ping para cada ultrasonido en ms
-constexpr auto PING_INTERVALO = 1000U/25U;
+constexpr auto PING_INTERVALO = 1000U/15U;
 
 #define STRAT_PRUEBA_TATAMI -2
 #define STRAT_PRUEBA -1
@@ -49,6 +49,6 @@ constexpr auto PING_INTERVALO = 1000U/25U;
 #define STRAT_BLUETOOTH 3
 
 // La estrategia a utilizar
-#define ESTRATEGIA STRAT_PRUEBA
+#define ESTRATEGIA STRAT_BLUETOOTH
 
 #endif

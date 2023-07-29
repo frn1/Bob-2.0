@@ -24,7 +24,7 @@ void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uin
 {
   dprintln("STRAT DE PRUEBA");
   digitalWrite(LED_BUILTIN, HIGH);
-  testMotores(Direccion::Adelante);
+  actualizarMotores(Direccion::Adelante, 255);
   //testMotores(Direccion::Izquierda);
   //testMotores(Direccion::Derecha);
   //testMotores(Direccion::Atras);

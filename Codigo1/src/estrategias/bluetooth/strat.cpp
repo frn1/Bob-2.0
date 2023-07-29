@@ -7,18 +7,21 @@
 #include "../../motores/motores.hpp"
 
 #include "strat.hpp"
+#include  <SoftwareSerial.h>
 
-#define BT Serial
+//SoftwareSerial BT(1,0);
+#define BT Serial1
 
 void setupEstrategia()
 {
   BT.begin(115200);
 }
 
-uint8_t porcentaje = 0;
-
 void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uint16_t distanciaDerecha, uint16_t lecturaPisoL, uint16_t lecturaPisoR)
 {
+  static uint8_t porcentaje = 0;
+  BT.println(porcentaje);
+  if (BT.available()==0) return;
   switch (BT.read())
   {
   case 'G': // Adelante Izq.

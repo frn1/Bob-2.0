@@ -47,7 +47,7 @@ void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uin
   {
     cambiarEstado(Estado::EvitandoCaerse);
   }
-  else if (distanciaAdelante < 100 && distanciaAdelante != 0)
+  else if (distanciaAdelante < 60 &&  distanciaAdelante != 0)
   {
     cambiarEstado(Estado::Empujando);
   }
@@ -56,13 +56,17 @@ void loopEstrategia(uint16_t distanciaIzquierda, uint16_t distanciaAdelante, uin
   {
   case EvitandoCaerse:
     actualizarMotores(Direccion::Atras, 255);
-    if (tiempoPasado(tiempo) > 100)
+    if (tiempoPasado(tiempo) > 150)
     {
       cambiarEstado((Estado)(rand() % 2));
     }
     break;
   case Empujando:
     actualizarMotores(Direccion::Adelante, 255);
+    if ((distanciaAdelante > 60 || distanciaAdelante == 0) && tiempoPasado(tiempo) > 200)
+    {
+      cambiarEstado((Estado)(rand() % 2));
+    }
     break;  
   case BuscandoL:
     actualizarMotores(Direccion::Izquierda, 135);
