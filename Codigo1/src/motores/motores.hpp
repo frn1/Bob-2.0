@@ -71,10 +71,10 @@ inline void actualizarMotores(bool lAdel, bool lAtras, bool rAdel, bool rAtras)
   dprint(rAtras ? "ALTO" : "bajo");
   dprintln();
 
-  lAdelSt = map(lAdel, 0, 255, 0, 255);
-  lAtrasSt = map(lAtras, 0, 255, 0, 255);
-  rAdelSt = map(rAdel, 0, 255, 0, 255);
-  rAtrasSt = map(rAtras, 0, 255, 0, 255);
+  lAdelSt = map(lAdel, 0, 255, 80, 255);
+  lAtrasSt = map(lAtras, 0, 255, 80, 255);
+  rAdelSt = map(rAdel, 0, 255, 80, 255);
+  rAtrasSt = map(rAtras, 0, 255, 80, 255);
 
   actualizarMotores();
 }
