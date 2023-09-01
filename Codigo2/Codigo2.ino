@@ -14,38 +14,40 @@ constexpr uint8_t BOT_COMIENZO = 12;
 
 constexpr uint8_t LED = LED_BUILTIN;
 
-// Gas density in kg/m^3 (Kilogram per meter cubed)
+// Densidad del aire en kg/m^3 (Kilogramp por metro cúbico)
 constexpr float DENSIDAD_AIRE = 1.225;
-// Molar mass of air in kg/mol (Kilograms per mole)
+// Masa molar del aire en kg/mol (Kilogramos por mol)
 constexpr float MASA_MOLAR_AIRE = 28.9644 / 1000;
-// Gravity   in m/s^2 (Meters per second squared)
+// Aceleración gravitacional en m/s^2 (Metros por segundos cuadrados)
 constexpr float GRAVEDAD = 9.79701;
-// The ALTITUD the robots currently at in m (Meters)
+// La altitud actual del robot en m (Metros)
 constexpr float ALTITUD = 77;
-// The ALTITUD where the reference was measured in m (Meters)
+// La altitud donde se midió la presión en m (Metros)
 constexpr float ALTITUD_REFERENCIA = 0;
-// The current temperature the robots is currently in K (Kelvins)
-constexpr float TEMPERATURE = 283.2;  // 10 °C
-// The temperature at the place the reference was measured in K (Kelvins)
-constexpr float TEMPERATURE_REFERENCE = 287.15;  // 14 °C
-// The Universal Gas Constant in J/(mol K) (Joules per mole kelvin)
-constexpr float UNIVERSAL_GAS_CONSTANT = 0.00831446261815324;
-// Gas pressure at the place where the reference was measured in Pa (Pascals)
-constexpr float PRESSURE_REFERENCE = 101325;
-// Gas pressure at current height in Pa (Pascals)
-constexpr float PRESSURE = PRESSURE_REFERENCE * gcem::exp(-GRAVEDAD * MASA_MOLAR_AIRE * (ALTITUD - ALTITUD_REFERENCIA) / (UNIVERSAL_GAS_CONSTANT * TEMPERATURE_REFERENCE));
-// Gas adibatic index (7/5 for diatomic, 5/3 for monatomic)
-constexpr float ADIBATIC_INDEX = 7.0 / 5.0;
-// The speed of sound in mm/us (millimeters per microseconds)
-constexpr float SPEED_OF_SOUND = gcem::sqrt((ADIBATIC_INDEX * PRESSURE) / DENSIDAD_AIRE) / 1000;
-// Maximum distance to read in mm (millimeters)
+// La temperatura actual en K (Kelvins)
+// Conversión: °C + 273.15 = K
+constexpr float TEMPERATURA = 283.2;
+// La temperatura cuando se midió la presion en K (Kelvins)
+// Conversión: °C + 273.15 = K
+constexpr float TEMPERATURA_REFERENCIA = 287.15; // 14 °C
+// La constante universal del gas en J/(mol K) (Joules por mol kelvin)
+constexpr float CONSTANTE_GAS_UNIVERSAL = 0.00831446261815324;
+// La presión del aire de referencia en Pa (Pascales)
+constexpr float PRESION_REFERENCIA = 101325;
+// La presión del aire actual en Pa (Pascaless)
+constexpr float PRESION = PRESION_REFERENCIA * gcem::exp(-GRAVEDAD * MASA_MOLAR_AIRE * (ALTITUD - ALTITUD_REFERENCIA) / (CONSTANTE_GAS_UNIVERSAL * TEMPERATURA_REFERENCIA));
+// El indice adibatico (7/5 para diatómico, 5/3 para monoatómico)
+constexpr float INDICE_ADIBATICO = 7.0 / 5.0;
+// La velocidad del sonido en mm/us (milimetros per microsegundos)
+constexpr float VELOCIDAD_DEL_SONIDO = gcem::sqrt((INDICE_ADIBATICO * PRESION) / DENSIDAD_AIRE) / 1000;
+// Maxima distancia a leer en mm (milimeters)
 constexpr float MAX_DIST = 700;
-// Time it takes for sound to move 2 mm (millimeters)
-constexpr unsigned long TIME_PER_MM = 2.0 / SPEED_OF_SOUND;
+// Tiempo que tarda el sonido en recorer 2 mm (milimetros)
+constexpr unsigned long TIEMPO_PARA_2MM = 2.0 / VELOCIDAD_DEL_SONIDO;
 // Timeout for a reading in us (microseconds)
-constexpr unsigned long TIMEOUT_DIST = MAX_DIST * TIME_PER_MM * 3;
+constexpr unsigned long TIEMPO_MAX_LECTURA = MAX_DIST * TIEMPO_PARA_2MM * 3;
 // Time between readings in ms (milliseconds)
-constexpr unsigned long TIME_PER_READING_DIST = TIMEOUT_DIST / 1000 + 1;
+constexpr unsigned long TIEMPO_POR_LECTURA = TIEMPO_MAX_LECTURA / 1000 + 1;
 
 void setup() {
   pinMode(MTR_L_ADELANTE, OUTPUT);
@@ -79,8 +81,8 @@ long ultra(uint8_t trig, uint8_t echo) {
   delayMicroseconds(10);  //Enviamos un pulso de 10us
   digitalWrite(trig, LOW);
 
-  t = pulseIn(echo, HIGH, TIMEOUT_DIST);  //obtenemos el ancho del pulso
-  d = t / TIME_PER_MM;                     //escalamos el tiempo a una distancia en cm
+  t = pulseIn(echo, HIGH, TIEMPO_MAX_LECTURA);  //obtenemos el ancho del pulso
+  d = (t / TIEMPO_PARA_2MM) / 10;                     //escalamos el tiempo a una distancia en cm
   return d;
 }
 
