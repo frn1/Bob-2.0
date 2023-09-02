@@ -77,12 +77,41 @@ void loop() {
   Serial.println(analogRead(TATAMI_R));
   Serial.println(analogRead(TATAMI_L));
 
-  if (analogRead(TATAMI_R) < 450 || analogRead(TATAMI_L) < 450) {
+  if (analogRead(TATAMI_L) < 450) {
     analogWrite(MTR_L_ADELANTE, 0);
     analogWrite(MTR_R_ADELANTE, 0);
     analogWrite(MTR_L_ATRAS, 0);
     analogWrite(MTR_R_ATRAS, 0);
+    delay(2);
+    analogWrite(MTR_L_ATRAS, 160);
+    analogWrite(MTR_R_ATRAS, 255);
+    delay(500);
+    analogWrite(MTR_L_ADELANTE, 0);
+    analogWrite(MTR_R_ADELANTE, 255);
+    analogWrite(MTR_L_ATRAS, 0);
+    analogWrite(MTR_R_ATRAS, 0);
     delay(10);
+  }
+  if (analogRead(TATAMI_R) < 450) {
+    analogWrite(MTR_L_ADELANTE, 0);
+    analogWrite(MTR_R_ADELANTE, 0);
+    analogWrite(MTR_L_ATRAS, 0);
+    analogWrite(MTR_R_ATRAS, 0);
+    delay(2);
+    analogWrite(MTR_L_ATRAS, 255);
+    analogWrite(MTR_R_ATRAS, 160);
+    delay(500);
+    analogWrite(MTR_L_ADELANTE, 0);
+    analogWrite(MTR_R_ADELANTE, 255);
+    analogWrite(MTR_L_ATRAS, 0);
+    analogWrite(MTR_R_ATRAS, 0);
+    delay(10);
+  } else if (analogRead(TATAMI_R) < 450 || analogRead(TATAMI_L) < 450) {
+    analogWrite(MTR_L_ADELANTE, 0);
+    analogWrite(MTR_R_ADELANTE, 0);
+    analogWrite(MTR_L_ATRAS, 0);
+    analogWrite(MTR_R_ATRAS, 0);
+    delay(2);
     analogWrite(MTR_L_ATRAS, 255);
     analogWrite(MTR_R_ATRAS, 255);
     delay(500);
@@ -148,4 +177,3 @@ void loop() {
   //   analogWrite(MTR_R_ATRAS, 0);
   // }
 }
-
