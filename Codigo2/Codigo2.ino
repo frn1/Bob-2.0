@@ -12,7 +12,7 @@ constexpr uint8_t BOT_COMIENZO = 12;
 
 constexpr uint8_t LED = LED_BUILTIN;
 
-constexpr uint8_t VELOCIDAD = 130; // MINIMO 130!!! SI NO NO SE MUEVE!!!W
+constexpr uint8_t VELOCIDAD = 130; // MINIMO 130!!! SI NO NO SE MUEVE!!!
 
 // La velocidad del sonido en cm/us (centimetros por microsegundos)
 constexpr float VELOCIDAD_DEL_SONIDO = 0.34027 / 10;

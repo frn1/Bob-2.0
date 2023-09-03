@@ -1,4 +1,0 @@
-[submodule "Codigo2/src/gcem"]
-	path = Codigo2/src/gcem
-	url = https://github.com/frn1/gcem.git
-	shallow = true
