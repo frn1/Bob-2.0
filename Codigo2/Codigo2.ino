@@ -1,3 +1,4 @@
+#include <FastGPIO.h> // https://github.com/pololu/fastgpio-arduino
 /***MOTORES***/
 //Inicializacion de pines
 
@@ -66,6 +67,9 @@ void setupMotor() {
 
 /*****ULTRASONICOS****/
 
+#define HABILITAR_CNYL
+#define HABILITAR_CNYR
+
 constexpr uint8_t TRIG = 3;
 constexpr uint8_t ECHO_L = 4;
 constexpr uint8_t ECHO_C = 5;
@@ -132,6 +136,13 @@ void setupPiso() {
 
 /***MISC.***/
 
+// Estrategias disponibles:
+// * ```ESTRATEGIA_2```: En desarrollo
+// * ```ESTRATEGIA_1_MIRKO```: La original pero Mirko >:(
+// * ```ESTRATEGIA_1```: La original
+// La versión Mirko me hizo enojar >:(
+#define ESTRATEGIA_1
+
 // Boton para inciar el código
 // No está implementado por ahora
 constexpr uint8_t BOT_COMIENZO = 12;
@@ -166,6 +177,7 @@ void setup() {
 // Código para evitar que se caiga
 // TODO: Hacerlo más lindo
 void evitarBlanco() {
+#ifdef HABILITAR_CNYL
   if (analogRead(CNY_L) < 450) {
     analogWrite(MTR_L_ADELANTE, 0);
     analogWrite(MTR_R_ADELANTE, 0);
@@ -180,7 +192,10 @@ void evitarBlanco() {
     analogWrite(MTR_L_ATRAS, 0);
     analogWrite(MTR_R_ATRAS, 0);
     delay(10);
-  } else /* if (analogRead(CNY_R) < 450) {
+  } else
+#endif
+#ifdef HABILITAR_CNYR
+    if (analogRead(CNY_R) < 450) {
     analogWrite(MTR_L_ADELANTE, 0);
     analogWrite(MTR_R_ADELANTE, 0);
     analogWrite(MTR_L_ATRAS, 0);
@@ -194,28 +209,36 @@ void evitarBlanco() {
     analogWrite(MTR_L_ATRAS, 0);
     analogWrite(MTR_R_ATRAS, 0);
     delay(10);
-  } else */
-    if (/* analogRead(CNY_R) < 450 || */ analogRead(CNY_L) < 450) {
-      analogWrite(MTR_L_ADELANTE, 0);
-      analogWrite(MTR_R_ADELANTE, 0);
-      analogWrite(MTR_L_ATRAS, 0);
-      analogWrite(MTR_R_ATRAS, 0);
-      delay(2);
-      analogWrite(MTR_L_ATRAS, 255);
-      analogWrite(MTR_R_ATRAS, 255);
-      delay(500);
-      analogWrite(MTR_L_ADELANTE, 0);
-      analogWrite(MTR_R_ADELANTE, 255);
-      analogWrite(MTR_L_ATRAS, 0);
-      analogWrite(MTR_R_ATRAS, 0);
-      delay(10);
-    }
+  } else
+#endif
+    if (
+#ifdef HABILITAR_CNYR
+      analogRead(CNY_R) < 450
+#ifdef HABILITAR_CNYL
+      ||
+#endif
+#endif
+#ifdef HABILITAR_CNYL
+      analogRead(CNY_L) < 450
+#endif
+    ) {
+    analogWrite(MTR_L_ADELANTE, 0);
+    analogWrite(MTR_R_ADELANTE, 0);
+    analogWrite(MTR_L_ATRAS, 0);
+    analogWrite(MTR_R_ATRAS, 0);
+    delay(2);
+    analogWrite(MTR_L_ATRAS, 255);
+    analogWrite(MTR_R_ATRAS, 255);
+    delay(500);
+    analogWrite(MTR_L_ADELANTE, 0);
+    analogWrite(MTR_R_ADELANTE, 255);
+    analogWrite(MTR_L_ATRAS, 0);
+    analogWrite(MTR_R_ATRAS, 0);
+    delay(10);
+  }
 }
 
 void loop() {
-  Serial.println(analogRead(CNY_R));
-  Serial.println(analogRead(CNY_L));
-
   evitarBlanco();
 
   if (millis() - ultima_medicion_dist > TIEMPO_POR_LECTURA) {
@@ -225,25 +248,62 @@ void loop() {
     ultima_medicion_dist = millis();
   }
 
-  bool girando = false;
+
+#ifdef ESTRATEGIA_2
+
+#elif ESTRATEGIA_1_MIRKO
+  static enum Estados {
+    GirandoR,
+    GirandoL,
+    Matando,
+  } estado;
+
+  switch (estado) {
+    case GirandoR:
+      if (cen != 0) {
+        estado = Estados::Matando;
+      } else if (izq != 0) {
+        estado = Estados::GirandoL;
+      }
+      derecha();
+      break;
+    case GirandoL:
+      if (cen != 0) {
+        estado = Estados::Matando;
+      } else if (der != 0) {
+        estado = Estados::GirandoR;
+      }
+      izquierda();
+      break;
+    case Matando:
+      if (izq != 0) {
+        estado = Estados::GirandoL;
+      } else if (der != 0) {
+        estado = Estados::GirandoR;
+      }
+      adelante();
+  }
+#else
+  static bool girando = false;
 
   if (cen != 0) {
-    Serial.println("Adelante");
+    // Serial.println("Adelante");
     adelante();
     girando = false;
   } else if (izq != 0) {
-    Serial.println("Izquierda");
+    // Serial.println("Izquierda");
     izquierda();
     girando = true;
   } else if (der != 0) {
-    Serial.println("Derecha");
+    // Serial.println("Derecha");
     derecha();
     girando = true;
   } else {
-    Serial.println("Ninguno");
+    // Serial.println("Ninguno");
     if (girando == false) {
       derecha();
       girando = true;
     }
   }
+#endif
 }
