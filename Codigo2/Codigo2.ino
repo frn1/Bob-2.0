@@ -1,4 +1,4 @@
-#include <FastGPIO.h> // https://github.com/pololu/fastgpio-arduino
+#include <FastGPIO.h>  // https://github.com/pololu/fastgpio-arduino
 /***MOTORES***/
 //Inicializacion de pines
 
@@ -57,10 +57,14 @@ void parar() {
 
 // Setup los motores
 void setupMotor() {
-  pinMode(MTR_L_ADELANTE, OUTPUT);
-  pinMode(MTR_L_ATRAS, OUTPUT);
-  pinMode(MTR_R_ADELANTE, OUTPUT);
-  pinMode(MTR_R_ATRAS, OUTPUT);
+  FastGPIO::Pin<MTR_L_ADELANTE>::setOutput(false);
+  FastGPIO::Pin<MTR_R_ADELANTE>::setOutput(false);
+  FastGPIO::Pin<MTR_L_ATRAS>::setOutput(false);
+  FastGPIO::Pin<MTR_R_ATRAS>::setOutput(false);
+  // pinMode(MTR_L_ADELANTE, OUTPUT);
+  // pinMode(MTR_L_ATRAS, OUTPUT);
+  // pinMode(MTR_R_ADELANTE, OUTPUT);
+  // pinMode(MTR_R_ATRAS, OUTPUT);
 
   parar();
 }
@@ -97,24 +101,28 @@ unsigned long der;
 
 // Setup ultrasonicos
 void setupUltra() {
-  pinMode(TRIG, OUTPUT);
-  pinMode(ECHO_L, INPUT);
-  pinMode(ECHO_C, INPUT);
-  pinMode(ECHO_R, INPUT);
+  FastGPIO::Pin<TRIG>::setOutputLow();
+  FastGPIO::Pin<ECHO_L>::setInput();
+  FastGPIO::Pin<ECHO_C>::setInput();
+  FastGPIO::Pin<ECHO_R>::setInput();
+  // pinMode(ECHO_L, INPUT);
+  // pinMode(ECHO_C, INPUT);
+  // pinMode(ECHO_R, INPUT);
 
-  izq = ultra(TRIG, ECHO_L);
-  cen = ultra(TRIG, ECHO_C);
-  der = ultra(TRIG, ECHO_R);
+  izq = ultra<TRIG, ECHO_L>();
+  cen = ultra<TRIG, ECHO_C>();
+  der = ultra<TRIG, ECHO_R>();
 }
 
 // Medir distancia del ultrasonido
-unsigned long ultra(uint8_t trig, uint8_t echo) {
+template<uint8_t trig, uint8_t echo>
+unsigned long ultra() {
   unsigned long t;  //timepo que demora en llegar el eco
   unsigned long d;  //distancia en centimetros
 
-  digitalWrite(trig, HIGH);
+  FastGPIO::Pin<trig>::setOutputHigh();
   delayMicroseconds(10);  //Enviamos un pulso de 10us
-  digitalWrite(trig, LOW);
+  FastGPIO::Pin<trig>::setOutputLow();
 
   t = pulseIn(echo, HIGH, TIEMPO_MAX_LECTURA);  //obtenemos el ancho del pulso
   d = t / TIEMPO_PARA_2CM;                      //escalamos el tiempo a una distancia en cm
@@ -150,12 +158,12 @@ constexpr uint8_t BOT_COMIENZO = 12;
 constexpr uint8_t LED = 7;
 
 void setup() {
-  Serial.begin(115200);
+  // Serial.begin(115200);
   setupMotor();
   setupUltra();
   setupPiso();
-  pinMode(LED, OUTPUT);
-  pinMode(BOT_COMIENZO, INPUT_PULLUP);
+  FastGPIO::Pin<LED>::setOutputHigh();
+  FastGPIO::Pin<BOT_COMIENZO>::setInputPulledUp();
 
   // Esperar 5 segundos antes de prender el robot
   // Serial.println("Vamos en 5!");
@@ -168,10 +176,11 @@ void setup() {
   //   digitalWrite(LED, LOW);
   //   delay(500);
   // }
-  delay(5000);
 
   // Inicializar timer de los ultrasonidos
   ultima_medicion_dist = millis();
+
+  delay(5000);
 }
 
 // Código para evitar que se caiga
@@ -242,9 +251,9 @@ void loop() {
   evitarBlanco();
 
   if (millis() - ultima_medicion_dist > TIEMPO_POR_LECTURA) {
-    izq = ultra(TRIG, ECHO_L);
-    cen = ultra(TRIG, ECHO_C);
-    der = ultra(TRIG, ECHO_R);
+    izq = ultra<TRIG, ECHO_L>();
+    cen = ultra<TRIG, ECHO_C>();
+    der = ultra<TRIG, ECHO_R>();
     ultima_medicion_dist = millis();
   }
 
